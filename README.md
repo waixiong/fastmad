@@ -21,21 +21,26 @@ samples, guidance on mobile development, and a full API reference.
 ### Run the apps
 Run `flutter run --release`
 Support **iOS** and **Android**.
+
 Volume on to have better experience.
 
 
 ## What is FastMad
 FastMad is a simple math solving game, you won't get mad actually.
+
 <img src="./img/start.png" width="270" height="480" alt="Home page of the game">
 
 Press **'START'**.
+
 
 <img src="./img/play1.png" width="270" height="480" alt="Gameplay">
 <img src="./img/play2.png" width="270" height="480" alt="Gameplay">
 
 Then just choose the right answer the fill in the box.
 
+
 <img src="./img/end.png" width="270" height="480" alt="Endgame">
 
 When answer wrong, the game end.
+
 Score is calculate base on time, the lesser the time, the higher the score obtained.
