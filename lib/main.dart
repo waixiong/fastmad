@@ -36,7 +36,7 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin<A
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: Duration(seconds:2));
+    controller = AnimationController(vsync: this, duration: Duration(seconds:1));
     animate = CurvedAnimation(parent: controller, curve: Interval(widget.b, widget.b+0.3, curve: Curves.fastOutSlowIn));
     controller.addListener(() { setState(() {}); });
     controller.forward();
