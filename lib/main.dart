@@ -15,12 +15,10 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.light(),
-      home: Game(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+    theme: ThemeData.light(),
+    home: Game(),
+  );
 }
 
 class Animate extends StatefulWidget {
@@ -38,26 +36,21 @@ class _AnimateState extends State<Animate> with SingleTickerProviderStateMixin<A
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: Duration(seconds:1));
-    animate = CurvedAnimation(parent: controller, curve: Interval(widget.b, widget.b+0.5, curve: Curves.fastOutSlowIn));
+    controller = AnimationController(vsync: this, duration: Duration(seconds:2));
+    animate = CurvedAnimation(parent: controller, curve: Interval(widget.b, widget.b+0.3, curve: Curves.fastOutSlowIn));
     controller.addListener(() { setState(() {}); });
     controller.forward();
   }
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+  void dispose() { controller.dispose(); super.dispose(); }
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ScaleTransition(
-        scale: animate, child: widget.child,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Center(
+    child: ScaleTransition(
+      scale: animate, child: widget.child,
+    ),
+  );
 }
 
 class Game extends StatefulWidget {
@@ -90,13 +83,12 @@ class _GameState extends State<Game> with SingleTickerProviderStateMixin {
         row.add(Expanded(child: Animate(RaisedButton(
           color: Color(chooser[type][i+j]['c']),
           onPressed: (){
-            if(q['type']=='s'){
-              setQ(true);
-            }else{
+            if(q['type']=='s') setQ(true);
+            else{
               q[type]=chooser[type][i+j]['t'];
               if(check(q['x'], q['o'], q['y'],q['c'],q['z'])){
                 int s = getMS()-q['t'];
-                _score+=1000000~/(s*(s/1000));
+                _score+=1000000~/(s*(s/4000));
                 setQ(true); play(true);
               }else{
                 play(false);
@@ -107,7 +99,7 @@ class _GameState extends State<Game> with SingleTickerProviderStateMixin {
             }
           },
           child: Center(child: Text(chooser[type][i+j]['t'], style: TextStyle(fontSize: 50, fontWeight: FontWeight.w600, color: Colors.white),),),
-        ), 0.5)));
+        ), 0.3+(i+j)*0.1)));
       }
       col.add(Expanded(child: Row(children: row)));
     }
